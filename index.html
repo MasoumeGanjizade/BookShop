@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top bg-info">
+<div class="container-fluid">
+    <a class="navbar-brand text-white" href="#"><i class="fa-solid fa-book-open"></i> BookShop.org</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link sm-border border-primary-subtle" href="#carouselExampleCaptions">Home</a></li>
+            <li class="nav-item"><a class="nav-link " id="n-a-h" href="#store">Store</a></li>
+            <li class="nav-item"><a class="nav-link " id="n-a-h" href="#blog">Blog</a></li>
+            <li class="nav-item"><a class="nav-link " id="n-a-h" href="#contact">Contact</a></li>
+            <li class="nav-item">
+                <a href="./Login.html" class="btn btn-sm btn-outline-light btn-warning rounded px-5 mt-1 mx-2" id="Login" onclick="addclick()">Login</a>
+            </li>
+            <li class="nav-item">
+              <button id="darkModeToggle" class="btn btn-sm btn-outline-light mt-1 mx-2">
+              <i class="fa-solid fa-moon"></i> Dark Mode</button>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</nav>
+
+  <!-- Carousel with Dark Overlay and Hero Section -->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" dir="rtl" style="height: 100vh; min-height: 600px; overflow: hidden; position: relative;">
+
+  <!-- Carousel Items -->
+  <div class="carousel-inner h-100">
+    <div class="carousel-item active h-100">
+      <img src="./images/Book.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Book">
+    </div>
+    <div class="carousel-item h-100">
+      <img src="./images/Book1.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Library">
+    </div>
+  </div>
+
+  <!-- Dark Overlay -->
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(77, 94, 128, 0.7); z-index: 1;"></div>
+
+  <!-- Hero Content -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white text-center px-4 px-md-5" style="z-index: 2;">
+    <p class="text-uppercase text-warning fw-semibold mb-2 mt-5">Welcome to BookShop.org</p>
+    <h1 class="fw-bold mb-3 fs-2 fs-md-1">The Best Online Bookshop</h1>
+    <p class="mb-4 px-3 px-md-0 fs-6 d-none d-md-block">.You can find every kind of book you're looking for—from science to romance, history to fantasy</p>
+    <a href="#store" class="btn btn-md btn-outline-light btn-primary">Go to Shop</a>
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev" style="z-index: 3;">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" style="z-index: 3;">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+</div>
+<!-- Store Section -->
+<section class="container my-5 py-5" id="store">
+  <h2 class="text-center mb-5 fw-bold text-info"><i class="fa-solid fa-store"></i> Our Book Store</h2>
+
+  <div class="row" id="book-list">
+    <!-- Books will be loaded here by JavaScript -->
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Shopping Cart -->
+  <div class="cart mt-5">
+    <h3 class="text-center text-info mb-4"><i class="fa-solid fa-cart-shopping"></i> Shopping Cart</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle text-center">
+        <thead class="table-info">
+          <tr>
+            <th>Book</th>
+            <th>Price ($)</th>
+            <th>Quantity</th>
+            <th>Total ($)</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items"></tbody>
+      </table>
+    </div>
+    <div class="text-end mt-3">
+      <h5 id="cart-total" class="fw-bold">Total: $0.00</h5>
+      <button class="btn btn-success mt-2" id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+</section>
+<!-- Blog Section -->
+<section id="blog" class="container-xxl py-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-info"><i class="fa-solid fa-blog"></i> Book Genre Blog</h2>
+    <p class="text-muted">Discover the beauty and depth of different types of books</p>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- Scientific Books -->
+    <div class="col-md-4 mb-4">
+      <div class="border rounded shadow-sm h-100 d-flex flex-column overflow-hidden card-hover">
+        <div class="ratio ratio-16x9">
+          <img src="./images/Scientific.webp" class="w-100 h-100 object-fit-cover" alt="Scientific Books">
+        </div>
+        <div class="p-3 d-flex flex-column flex-grow-1">
+          <h5 class="fw-semibold">The Power of Scientific Literature</h5>
+          <p class="text-muted small mb-2">October 15, 2025 • By BookShop Team</p>
+          <p class="mb-3">Explore how scientific books expand our understanding of the universe, from physics to biology and beyond.</p>
+          <a href="#" class="btn btn-outline-primary mt-auto">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Romance Books -->
+    <div class="col-md-4">
+      <div class="border rounded shadow-sm h-100 d-flex flex-column overflow-hidden card-hover">
+        <div class="ratio ratio-16x9">
+          <img src="./images/Romance.jpeg" class="w-100 h-100 object-fit-cover" alt="Romance Books">
+        </div>
+        <div class="p-3 d-flex flex-column flex-grow-1">
+          <h5 class="fw-semibold">Why We Love Romance Novels</h5>
+          <p class="text-muted small mb-2">October 10, 2025 • By BookShop Team</p>
+          <p class="mb-3">Romance books offer emotional depth, passion, and stories of connection that resonate across cultures.</p>
+          <a href="#" class="btn btn-outline-primary mt-auto">Read More</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Historical Books -->
+    <div class="col-md-4">
+      <div class="border rounded shadow-sm h-100 d-flex flex-column overflow-hidden card-hover">
+        <div class="ratio ratio-16x9">
+          <img src="./images/history.jpg" class="w-100 h-100 object-fit-cover" alt="Historical Books">
+        </div>
+        <div class="p-3 d-flex flex-column flex-grow-1">
+          <h5 class="fw-semibold">Learning from the Past: Historical Reads</h5>
+          <p class="text-muted small mb-2">October 5, 2025 • By BookShop Team</p>
+          <p class="mb-3">Historical books help us understand different eras, cultures, and the events that shaped our world.</p>
+          <a href="#" class="btn btn-outline-primary mt-auto">Read More</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Contact -->
+ <div class="bg-warning text-center text-white py-3 row"  id="contact">
+    <h2 class="col-7 text-end"><b><i class="fa-solid fa-phone-volume fs-4 text-white"></i> Contact Us</b></h2>
+    <p class="lead col-5 text-start">Feel free to contact us</p>
+  </div>
+  <form class="form my-5 py-5" action="">
+ <div class="row mx-2">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+      </div>
+      <div class="form-group">
+          <label for="exampleFormControlInput1">Email address</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject" class="form-control" required="required">
+            <option value="1" selected="">Choose One:</option>
+            <option value="2">General Service</option>
+            <option value="3">Suggestions</option>
+            <option value="4">Order Book</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="name">Message</label>
+        <textarea name="message" id="message" class="form-control" rows="5" cols="25" required="required"placeholder="Message"></textarea>
+      </div>
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary mt-2" id="btnContactUs">Send Message</button>
+      </div>
+    </div>
+  </div>
+  </form>
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- Logo & About -->
+      <div class="col-md-6 mb-3 mb-md-0">
+        <h4 class="fw-bold"><i class="fa-solid fa-book-open me-2"></i> BookShop.org</h4>
+        <p class="small mb-0 text-white">Your trusted online bookstore for every genre—from science to romance, history to fantasy.</p>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="col-md-6 text-md-end">
+        <div class="d-flex justify-content-md-end gap-3 fs-5">
+          <a href="#" class="text-white"><i class="fab fa-instagram icon-f-hover"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-twitter icon-f-hover"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-linkedin-in icon-f-hover"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-github icon-f-hover"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="my-3 border-light">
+
+    <div class="text-center small text-white">
+      © 2025 BookShop.org | Designed by Masoumeh Ganjizadeh
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="./script.js"></script>
+</body>
+</html>
